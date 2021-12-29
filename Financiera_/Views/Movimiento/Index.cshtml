@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Financiera_.Models.movimiento>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int idCta = ViewBag.idCuenta;
+}
+
+<h1>Movimientos</h1>
+
+<p>
+    @*<a asp-action="Create" asp->Alta</a>*@
+    @Html.ActionLink("Alta", "Create", new { idCta = idCta })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.referencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaMovimiento)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.fechaAlta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idUsuarioAlta)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.importe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cargo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.abono)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.idCuentaNavigation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTipoMovimientoNavigation)
+        </th>
+        <th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model!=null) { 
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.referencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaMovimiento)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.fechaAlta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idUsuarioAlta)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.importe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cargo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.abono)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.IdCuentaNavigation.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoMovimientoNavigation.CargoAbono)
+            </td>*@
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>*@
+        </tr>
+}
+        }
+    </tbody>
+</table>

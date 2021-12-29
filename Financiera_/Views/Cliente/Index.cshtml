@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Financiera_.Models.cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Agregar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.clave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.apPaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apMaterno)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rfc)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.tipoPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipoIdentificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numeroIdentificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estatus)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.clave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+
+            @*<td>
+            @Html.DisplayFor(modelItem => item.apPaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apMaterno)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.apellidos)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.rfc)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoIdentificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numeroIdentificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estatus)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.id">Editar</a> |*@
+                @*<a asp-action="Details" asp-route-id="@item.id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
+                @Html.ActionLink("Cuenta", "Index","Cuenta", new { id = item.id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

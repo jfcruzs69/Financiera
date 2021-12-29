@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Te creemos</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="row center-block">
+        <div class="row center-block">
+            <form class="login-form" method="post" action="@Url.Content("~/Home/Index")">
+                <div class="container text-center">
+                    <div class="form-group">
+                        <label>Clave:&nbsp;&nbsp;&nbsp;</label>
+                        <input type="text" name="Clave" id="Clave" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña:</label>
+                        <input type="password" name="Password" id="Password" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Entrar" class="btn btn-success" />
+                    </div>
+                    <div class="danger">
+                        @ViewBag.Error
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

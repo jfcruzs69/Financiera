@@ -1,0 +1,92 @@
+﻿@model Financiera_.Models.DB.Cliente
+
+@{
+    //ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> estatus = (List<SelectListItem>)ViewBag.Estatus;
+    List<SelectListItem> tipoPersona = (List<SelectListItem>)ViewBag.tipoPersona;
+    List<SelectListItem> tipoIdentificacion = (List<SelectListItem>)ViewBag.tipoIdentificacion;
+    
+}
+
+<h1>@*Create*@</h1>
+
+<h4>Cliente-Alta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Clave" class="control-label"></label>
+                <input asp-for="Clave" class="form-control" required />
+                <span asp-validation-for="Clave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoPersona" class="control-label"></label>
+                @*<input asp-for="TipoPersona" class="form-control" asp-items="ViewBag.tipoPersona" required />*@
+                @Html.DropDownList("tipoPersona", tipoPersona, "Seleccione un tipo de cliente", new { @class = "form-control", @required = "required" })
+                <span asp-validation-for="TipoPersona" class="text-danger"></span>
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="NombreRazonSocial" class="control-label"></label>
+                <input asp-for="NombreRazonSocial" class="form-control" required />
+                <span asp-validation-for="NombreRazonSocial" class="text-danger"></span>
+                @*</div>
+            <div class="form-group">*@
+                <label asp-for="ApellidoPaterno" class="control-label"></label>
+                <input asp-for="ApellidoPaterno" class="form-control" />
+                <span asp-validation-for="ApellidoPaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApellidoMaterno" class="control-label"></label>
+                <input asp-for="ApellidoMaterno" class="form-control" />
+                <span asp-validation-for="ApellidoMaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rfc" class="control-label"></label>
+                <input asp-for="Rfc" class="form-control" required />
+                <span asp-validation-for="Rfc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdTipoIdentificacion" class="control-label">Tipo Identificación:</label>
+                @*<select asp-for="IdTipoIdentificacion" class="form-control" asp-items="ViewBag.tipoIdentificacion" required></select>*@
+                @Html.DropDownList("IdTipoIdentificacion", tipoIdentificacion, "Seleccione:", new { @class = "form-control", required = "required" })
+            </div>
+            <div class="form-group">
+                <label  class="control-label">Número identificación:</label>
+                <input asp-for="NumeroIdentificacion" class="form-control" required />
+                <span asp-validation-for="NumeroIdentificacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdEstatus" class="control-label">Estatus:</label>
+                <select asp-for="IdEstatus" class="form-control" asp-items="ViewBag.estatus" required></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaAlta" class="control-label"></label>
+                <input asp-for="FechaAlta" class="form-control" required />
+                <span asp-validation-for="FechaAlta" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="FechaModificacion" class="control-label"></label>
+            <input asp-for="FechaModificacion" class="form-control" required />
+            <span asp-validation-for="FechaModificacion" class="text-danger"></span>
+        </div>*@
+            <!--<div class="form-group">
+        @*<label asp-for="IdUsuarioAlta" class="control-label"></label>*@
+        @*<select asp-for="IdUsuarioAlta" class="form-control" asp-items="ViewBag.IdUsuarioAlta"></select>*@
+        @*<input type="hidden" asp-for="IdUsuarioAlta" value="1" class="form-control" required></input>*@
+    </div>-->
+            <input type="hidden" asp-for="IdUsuarioAlta" value="1" class="form-control" required></input>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+

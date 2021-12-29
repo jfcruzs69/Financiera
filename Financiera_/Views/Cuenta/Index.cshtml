@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Financiera_.Models.cuenta>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> tipoFiltro = (List<SelectListItem>)ViewBag.tipoFiltro;
+    string ClaveCte = ViewBag.ClaveCte;
+}
+
+<h1>Cuentas</h1>
+@using (Html.BeginForm())
+{
+    <p>
+        <a asp-action="Create">Alta</a>
+    </p>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <div class="col-md-3">
+                <b>Buscar por:</b>
+                @Html.DropDownList("tipoFiltro", tipoFiltro, "Seleccione:", new { @class = "form-control", required = "required" })
+            </div>
+            <div class="col-md-5">
+                <b>Criterio:</b>
+                @Html.TextBox("Criterio",ClaveCte,new {@class="form-control", required="required"})
+            </div>
+            <div class="col-md-1"><input type="submit" value="Filtrar" class="btn btn-success" /></div>
+        </div>
+    </div>    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.numero)
+                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.idCliente)
+        </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.claveCliente)
+                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.idTipoCuenta)
+        </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.tipoCuenta)
+                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.idEstatus)
+        </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.estatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.saldo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaAlta)
+                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.idUsuarioAlta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaModificacion)
+        </th>*@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numero)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.idCliente)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.claveCliente)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.idTipoCuenta)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoCuenta)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.idEstatus)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.estatus)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.saldo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaAlta)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.idUsuarioAlta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaModificacion)
+        </td>*@
+            <td>
+                @Html.ActionLink("Movimientos", "Index", "Movimiento", new { id = item.id })
+                @*<a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
+            </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

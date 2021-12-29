@@ -1,0 +1,70 @@
+﻿@model Financiera_.Models.DB.Cuentum
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> estatus = (List<SelectListItem>)ViewBag.Estatus;
+    List<SelectListItem> tipoCuenta = (List<SelectListItem>)ViewBag.tipoCuenta;
+}
+
+<h1>Alta de cuentas</h1>
+@*<h4>Cuentum</h4>*@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label  class="control-label">Clave de cliente:</label>
+                @*<select asp-for="IdCliente" class ="form-control" asp-items="ViewBag.IdCliente"></select>*@
+                @Html.TextBox("Cliente", null, new { @class = "form-control", required = "required" })
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tipo de cuenta:</label>
+                @*<select asp-for="IdTipoCuenta" class ="form-control" asp-items="ViewBag.IdTipoCuenta"></select>*@
+                @Html.DropDownList("IdTipoCuenta", tipoCuenta, "Seleccione:", new { @class = "form-control", required = "required" })
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label">Número</label>
+                <input asp-for="Numero" class="form-control" required />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saldo" class="control-label"></label>
+                <input type="number" asp-for="Saldo" class="form-control" min="500" />
+                <span asp-validation-for="Saldo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label  class="control-label">Fecha de alta:</label>
+                <input asp-for="FechaAlta" class="form-control" required />
+                <span asp-validation-for="FechaAlta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label aclass="control-label">Estatus de la cuenta:</label>
+                @*<select asp-for="IdEstatus" class="form-control" asp-items="ViewBag.IdEstatus"></select>*@
+                @Html.DropDownList("IdEstatus", estatus, "Seleccione:", new { @class = "form-control", required = "required" })
+            </div>        
+    @*<div class="form-group">
+                <label asp-for="IdUsuarioAlta" class="control-label"></label>
+                <input asp-for="IdUsuarioAlta" class="form-control" />
+                <span asp-validation-for="IdUsuarioAlta" class="text-danger"></span>
+            </div>*@
+            <input type="hidden" name="IdUsuarioAlta" id="IdUsuarioAlta" />
+            @*<div class="form-group">
+                <label asp-for="FechaModificacion" class="control-label"></label>
+                <input asp-for="FechaModificacion" class="form-control" />
+                <span asp-validation-for="FechaModificacion" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
